@@ -1,6 +1,4 @@
-//Recebe o request e response do Express, chama o service e devolve a resposta HTTP.
-
-import usuarioService from '../03_services/usuario.service.js';
+import usuarioService from '../services/usuario.service.js';
 import { response } from 'express';
 
 async function findAllUsuarioController(request, response) {

@@ -1,6 +1,4 @@
-//Só ele faz queries SQL. O resto do projeto não precisa saber como o banco funciona.
-
-import db from '../05_config/database.js';
+import db from '../config/database.js';
 
 db.run(`
 CREATE TABLE IF NOT EXISTS usuarios (
