@@ -5,6 +5,26 @@ async function findAllUsuarioService() {
     return usuarios;
 }
 
+async function findUsuarioByIdService(id){
+    const usuario = await usuarioRepository.findUsuarioByIdRepository(id)
+    if (!usuario) {
+        throw new Error("Usuario não encontrado!");
+    }
+    return usuario;
+}
+
+async function updateUsuarioService(id, usuarioAtualizado){
+    const usuario = await usuarioRepository.findUsuarioByIdRepository(id)
+    if (!usuario) {
+        throw new Error("Usuario não encontrado!");
+    }
+    const usuarioRetorno = await usuarioRepository.updateUsuarioRepository(id, usuarioAtualizado)
+    if (!usuarioRetorno) {
+        throw new Error("Erro ao atualizar o usuario!");
+    } 
+    return usuarioRetorno;
+}
+
 async function createUsuarioService(novoUsuario) {
     const usuario = await usuarioRepository.createUsuarioRepository(novoUsuario);
     if (!usuario) {
@@ -13,7 +33,23 @@ async function createUsuarioService(novoUsuario) {
     return usuario;
 }
 
+async function deleteUsuarioService(id){
+    const usuario = await usuarioRepository.findUsuarioByIdRepository(id)
+    if (!usuario) {
+        throw new Error("Usuario não encontrado!");
+    }
+    const mensagemRetorno = await usuarioRepository.deleteUsuarioRepository(id)
+    if (!mensagemRetorno) {
+        throw new Error("Erro ao deletar o usuario!");
+    } 
+    return mensagemRetorno;
+}
+
+
 export default {
     findAllUsuarioService,
-    createUsuarioService
+    createUsuarioService,
+    findUsuarioByIdService,
+    updateUsuarioService,
+    deleteUsuarioService
 };
